@@ -9,18 +9,21 @@ Vague prompts produce vague results. This chapter focuses on eliminating ambigui
 ### Example: Content Length
 
 #### ❌ Ineffective Prompt
+
 ```
 Write a short article about climate change.
 ```
 
 **Problems:**
+
 - "Short" is subjective (100 words? 500 words? 1000 words?)
 - "Article" format is undefined
 - Topic is too broad
 
 #### ✅ Optimized Prompt
+
 ```
-Write a 400-word informative article about the impact of climate change on coastal cities. 
+Write a 400-word informative article about the impact of climate change on coastal cities.
 Include:
 - 2-3 specific examples of affected cities
 - Current sea level rise statistics
@@ -29,6 +32,7 @@ Include:
 ```
 
 **Improvements:**
+
 - Exact word count specified
 - Focused subtopic defined
 - Specific content requirements listed
@@ -39,16 +43,19 @@ Include:
 ### Example: Business Analysis
 
 #### ❌ Ineffective Prompt
+
 ```
 Analyze the performance of our marketing campaigns and suggest improvements.
 ```
 
 **Problems:**
+
 - "Performance" undefined (ROI? Engagement? Conversions?)
 - "Marketing campaigns" too broad
 - "Improvements" lacks specificity
 
 #### ✅ Optimized Prompt
+
 ```
 Analyze the ROI performance of our Q3 2024 digital marketing campaigns using these metrics:
 - Cost per acquisition (CPA)
@@ -57,14 +64,15 @@ Analyze the ROI performance of our Q3 2024 digital marketing campaigns using the
 
 Data provided:
 - Email campaign: $5,000 spent, 150 conversions
-- Social media ads: $8,000 spent, 200 conversions  
+- Social media ads: $8,000 spent, 200 conversions
 - Google Ads: $12,000 spent, 400 conversions
 
-For each campaign, calculate the metrics above and rank by effectiveness. 
+For each campaign, calculate the metrics above and rank by effectiveness.
 Provide 2 specific, actionable recommendations for the lowest-performing campaign.
 ```
 
 **Improvements:**
+
 - Performance metrics clearly defined
 - Specific time period and campaign types
 - Actual data provided
@@ -75,18 +83,21 @@ Provide 2 specific, actionable recommendations for the lowest-performing campaig
 ### Example: Writing Style
 
 #### ❌ Ineffective Prompt
+
 ```
 Write in a professional but approachable tone.
 ```
 
 **Problems:**
+
 - "Professional but approachable" is subjective
 - No concrete reference point
 - Open to interpretation
 
 #### ✅ Optimized Prompt
+
 ```
-Write in a tone similar to Harvard Business Review articles - authoritative and well-researched, but accessible to non-experts. 
+Write in a tone similar to Harvard Business Review articles - authoritative and well-researched, but accessible to non-experts.
 
 Characteristics to include:
 - Use "we" and "you" to engage readers
@@ -100,6 +111,7 @@ Example of desired tone:
 ```
 
 **Improvements:**
+
 - Specific publication style referenced
 - Concrete characteristics listed
 - Measurable guidelines provided
@@ -110,16 +122,19 @@ Example of desired tone:
 ### Example: Data Presentation
 
 #### ❌ Ineffective Prompt
+
 ```
 Show me the sales data in a nice format.
 ```
 
 **Problems:**
+
 - "Nice format" is undefined
 - No structure specified
 - No indication of what data to include
 
 #### ✅ Optimized Prompt
+
 ```
 Present the Q4 sales data in a markdown table with these exact columns:
 | Month | Revenue | Units Sold | Top Product | Growth % |
@@ -135,6 +150,7 @@ Data: Oct: $45K revenue, 230 units, Product A; Nov: $52K revenue, 280 units, Pro
 ```
 
 **Improvements:**
+
 - Exact table format specified
 - Column requirements defined
 - Formatting rules provided
@@ -146,22 +162,25 @@ Data: Oct: $45K revenue, 230 units, Product A; Nov: $52K revenue, 280 units, Pro
 ### Example: Technical Documentation
 
 #### ❌ Ineffective Prompt
+
 ```
 Explain how it works and why users might have problems with it.
 ```
 
 **Problems:**
+
 - "It" is undefined
 - "Problems" are unspecified
 - No context provided
 
 #### ✅ Optimized Prompt
+
 ```
 Explain how OAuth 2.0 authentication works in web applications and identify the top 3 implementation problems developers encounter.
 
 Structure your explanation as:
 1. **How OAuth 2.0 Works**: 4-step process with simple analogies
-2. **Common Implementation Problems**: 
+2. **Common Implementation Problems**:
    - Problem description
    - Why it occurs
    - How to prevent it
@@ -170,6 +189,7 @@ Structure your explanation as:
 ```
 
 **Improvements:**
+
 - Specific technology identified
 - Clear structure provided
 - Target audience defined
@@ -240,12 +260,15 @@ Before submitting your prompt, verify:
 ## 🎯 Practice Exercises
 
 ### Exercise 1: Vague to Specific
+
 Transform this vague prompt into a specific one:
+
 ```
 "Help me write something good for my website's about page."
 ```
 
 Consider:
+
 - What type of business?
 - What tone and style?
 - What specific information to include?
@@ -253,13 +276,17 @@ Consider:
 - What's the goal of the page?
 
 ### Exercise 2: Ambiguity Detection
+
 Identify all ambiguous terms in this prompt:
+
 ```
 "Create a comprehensive report on our recent project that covers the important aspects and provides useful recommendations for future work."
 ```
 
 ### Exercise 3: Constraint Stacking
+
 Add 5 specific constraints to this basic prompt:
+
 ```
 "Write a blog post about productivity tips."
 ```
@@ -280,4 +307,4 @@ In Chapter 4, we'll explore how to set context and assign roles to AI models, gi
 
 ---
 
-*"Precision in prompting is like precision in programming - small details make the difference between success and frustration."*
+_"Precision in prompting is like precision in programming - small details make the difference between success and frustration."_

@@ -1,5 +1,107 @@
 # Chapter 11: Qwen Model Optimization
 
+## Official Best Practices for Qwen Prompt Optimization
+
+The following best practices are distilled from the official Alibaba Cloud Qwen documentation. Applying these strategies will help you get the most accurate, relevant, and high-quality results from Qwen models.
+
+### 1. Build Clear and Specific Prompts
+
+- Always provide detailed background, purpose, and explicit instructions.
+- The more specific your prompt, the better Qwen can perform.
+- **Example:**
+
+  | Vague Prompt | Clear & Specific Prompt |
+  |-------------|------------------------|
+  | I want to promote my company's new product. | Please design an eye-catching Weibo post for the "Zephyr Z9" lightweight portable phone, highlighting its ultra-thin design, high performance, and user convenience. The post should be concise, persuasive, and suitable for a young audience on Weibo. |
+
+### 2. Use Prompt Frameworks
+
+- Structure your prompts with these elements:
+  - **Context**: Background info relevant to the task.
+  - **Objective**: The specific task you want completed.
+  - **Style**: Desired writing style (e.g., expert, casual).
+  - **Tone**: Formal, humorous, persuasive, etc.
+  - **Audience**: Who the output is for.
+  - **Response Format**: Specify output format (list, JSON, report, etc.).
+- **Template:**
+
+  ```
+  #Background# [context]
+  #Purpose# [objective]
+  #Style# [style]
+  #Tone# [tone]
+  #Audience# [audience]
+  #Outputs# [response format]
+  ```
+
+### 3. Provide Output Examples
+
+- Show Qwen the format and style you expect by including sample outputs in your prompt.
+- This increases consistency and quality.
+
+### 4. Set Task Steps
+
+- For complex tasks, break down the process into clear steps.
+- Use `#Task Steps#` to guide Qwen through multi-step reasoning (e.g., for math, analysis, or code review).
+
+### 5. Use Separators for Complex Prompts
+
+- Use unique separators (like `###`, `===`, `>>>`) to clearly distinguish different sections or units in your prompt.
+- This helps Qwen parse and understand complex instructions.
+
+### 6. Guide the Model to "Think"
+
+- Use Chain of Thought (CoT) or Prompt Chaining to encourage step-by-step reasoning.
+- Ask Qwen to explain its thinking process before giving the final answer.
+
+### 7. Test and Iterate
+
+- Prompt engineering is experimental—test, get feedback, and refine your prompts.
+- Use Qwen's output and user feedback to continuously improve prompt quality.
+
+### 8. Use the Automatic Prompt Optimization Tool
+
+- Alibaba Cloud Model Studio offers a one-click prompt optimization tool that can expand and clarify your prompts automatically.
+- Access it via the [Prompts](https://modelstudio.console.alibabacloud.com/?tab=app#/component-manage/prompt) section.
+
+---
+
+#### Example: Optimized Qwen Prompt
+
+```
+#Background#
+We are launching the Zephyr Z9, a lightweight portable phone by Bailian.
+
+#Purpose#
+Create a Weibo post that excites young tech enthusiasts and encourages them to click for more info.
+
+#Style#
+Inspired by successful Blackberry campaigns.
+
+#Tone#
+Persuasive and energetic.
+
+#Audience#
+Young digital product fans on Weibo.
+
+#Outputs#
+A concise, impactful Weibo post (max 500 characters), with a call to action.
+
+#Example#
+"Light up your world with Zephyr Z9! Ultra-thin, ultra-fast, and ultra-stylish. Discover the future of mobile—click to learn more! #BailianZephyrZ9"
+```
+
+---
+
+**Key Takeaways (from official doc):**
+
+- Clear, structured prompts = better Qwen results.
+- Use frameworks and examples.
+- Guide Qwen's reasoning for complex tasks.
+- Test, iterate, and use available tools for optimization.
+
+---
+
 ## Understanding Qwen's Unique Strengths
 
 Qwen (developed by Alibaba) brings unique capabilities, particularly in multilingual understanding, cultural context awareness, and technical precision. This chapter explores how to optimize prompts specifically for Qwen's characteristics and strengths.
@@ -26,52 +128,60 @@ Qwen (developed by Alibaba) brings unique capabilities, particularly in multilin
 
 ### Technique 1: Multilingual Context Integration
 
-Qwen excels when cultural and linguistic context is explicitly provided.
+Qwen excels when cultural and linguistic context is explicitly provided. Use the prompt framework for best results.
 
 #### ❌ Generic Multilingual Request
 ```
 Translate this marketing message to Chinese.
 ```
 
-#### ✅ Cultural Context Integration
+#### ✅ Best Practice: Prompt Framework for Multilingual & Cultural Adaptation
 ```
-Translate and culturally adapt this marketing message for the Chinese market:
+#Background#
+We have a US-market marketing message: "Get ahead of the competition with our cutting-edge AI solution. Be the first to revolutionize your business!"
 
-**ORIGINAL MESSAGE (US Market):**
-"Get ahead of the competition with our cutting-edge AI solution. Be the first to revolutionize your business!"
+#Purpose#
+Translate and culturally adapt this message for the Chinese enterprise software market.
 
-**CULTURAL ADAPTATION REQUIREMENTS:**
-- Target audience: Chinese B2B decision makers (age 35-50)
-- Cultural considerations: 
-  - Emphasis on stability and proven results over "revolutionary" change
-  - Respect for collective success rather than individual competition
-  - Value long-term relationships and trust-building
-- Business context: Enterprise software market in China
-- Tone: Professional, respectful, emphasizing partnership
+#Audience#
+Chinese B2B decision makers (age 35-50)
 
-**DELIVERABLES:**
+#Style#
+Professional, respectful, partnership-oriented
+
+#Tone#
+Emphasize stability, proven results, collective success, and long-term relationships
+
+#Outputs#
 1. Direct translation maintaining original meaning
 2. Culturally adapted version for Chinese market
 3. Explanation of key cultural adaptations made
 4. Alternative messaging options if the concept doesn't translate well culturally
 
-**Please ensure the adapted message resonates with Chinese business culture while maintaining the core value proposition.**
+#Example#
+1. [Direct translation]
+2. [Culturally adapted version]
+3. [Explanation]
+4. [Alternatives]
 ```
 
 ### Technique 2: Technical Precision with Context
 
-Qwen handles technical tasks well when given precise specifications and context.
+Qwen handles technical tasks best when given precise specifications and context, using a structured prompt.
 
 #### ❌ Vague Technical Request
 ```
 Help me optimize this database query.
 ```
 
-#### ✅ Precise Technical Context
+#### ✅ Best Practice: Prompt Framework for Technical Optimization
 ```
-Optimize this PostgreSQL query for better performance in our e-commerce application:
+#Background#
+We have a PostgreSQL query in our e-commerce application that needs optimization.
 
-**CURRENT QUERY:**
+#Purpose#
+Analyze and optimize the following query for performance:
+
 ```sql
 SELECT p.product_id, p.name, p.price, c.category_name, 
        AVG(r.rating) as avg_rating, COUNT(r.rating) as review_count
@@ -85,76 +195,78 @@ ORDER BY avg_rating DESC, review_count DESC
 LIMIT 100;
 ```
 
-**SYSTEM CONTEXT:**
+#System Context#
 - Database: PostgreSQL 14
 - Table sizes: products (500K rows), reviews (2M rows), categories (50 rows)
 - Current execution time: 3.2 seconds
 - Target execution time: <500ms
 - Available indexes: products(price), products(created_date), reviews(product_id)
 
-**OPTIMIZATION REQUIREMENTS:**
+#Constraints#
+- Cannot modify table structure
+- Must maintain exact same result set
+- Minimize impact on write operations
+
+#Task Steps#
 1. Analyze current query performance bottlenecks
 2. Suggest specific index improvements
 3. Provide optimized query version
 4. Explain performance impact of each change
 5. Consider trade-offs (query speed vs. storage/maintenance)
 
-**CONSTRAINTS:**
-- Cannot modify table structure
-- Must maintain exact same result set
-- Minimize impact on write operations
+#Outputs#
+1. Optimized query
+2. Detailed technical analysis and recommendations
 
-**Please provide detailed technical analysis with specific recommendations.**
+#Example#
+1. [Optimized query]
+2. [Analysis]
 ```
 
 ### Technique 3: Cross-Cultural Business Analysis
 
-Leverage Qwen's cultural understanding for international business scenarios.
+Leverage Qwen's cultural understanding for international business scenarios. Use a structured prompt for clarity.
 
 ```
-Analyze our expansion strategy for entering the Southeast Asian market, considering cultural and business differences:
+#Background#
+We are a US-based SaaS company planning to expand our B2B project management software into Southeast Asia (Singapore, Malaysia, Thailand, Vietnam) over 18 months with a $2M investment. Our team is 80% Western, 20% Asian, with no prior experience in these markets.
 
-**EXPANSION PLAN:**
-- Product: B2B project management software
-- Target markets: Singapore, Malaysia, Thailand, Vietnam
-- Timeline: 18-month rollout
-- Investment: $2M across all markets
+#Purpose#
+Analyze our expansion strategy, considering cultural and business differences, and provide actionable insights for each market.
 
-**CULTURAL ANALYSIS FRAMEWORK:**
+#Audience#
+Company leadership and regional managers
 
-**1. MARKET-SPECIFIC ANALYSIS**
-For each target market, analyze:
-- Business culture and decision-making processes
-- Technology adoption patterns
-- Preferred communication styles
-- Relationship-building expectations
-- Pricing sensitivity and negotiation norms
+#Style#
+Professional, analytical, culturally sensitive
 
-**2. LOCALIZATION REQUIREMENTS**
-- Language localization needs and priorities
-- Cultural adaptations for UI/UX
-- Local business practice integration
-- Regulatory and compliance considerations
+#Tone#
+Objective, practical, and context-aware
 
-**3. GO-TO-MARKET STRATEGY**
-- Culturally appropriate marketing approaches
-- Partnership and distribution strategies
-- Sales process adaptations
-- Customer support considerations
+#Task Steps#
+1. For each target market, analyze:
+   - Business culture and decision-making processes
+   - Technology adoption patterns
+   - Preferred communication styles
+   - Relationship-building expectations
+   - Pricing sensitivity and negotiation norms
+2. Identify localization requirements:
+   - Language needs, UI/UX adaptations, local business practices, compliance
+3. Recommend go-to-market strategies:
+   - Marketing, partnerships, sales, support
+4. Assess risks:
+   - Cultural misunderstandings, entry barriers, competition, regulations
 
-**4. RISK ASSESSMENT**
-- Cultural misunderstanding risks
-- Market entry barriers
-- Competitive landscape differences
-- Regulatory and political risks
+#Outputs#
+1. Market-specific actionable insights with cultural context
+2. Recommendations for localization and go-to-market
+3. Risk assessment summary
 
-**COMPANY CONTEXT:**
-- US-based SaaS company
-- Current markets: US, Canada, UK
-- Team: 80% Western, 20% Asian backgrounds
-- No previous experience in Southeast Asian markets
-
-**Please provide specific, actionable insights for each market with cultural context explanations.**
+#Example#
+1. [Singapore: ...]
+2. [Malaysia: ...]
+3. [Thailand: ...]
+4. [Vietnam: ...]
 ```
 
 ## Qwen-Specific Prompt Patterns
